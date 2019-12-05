@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/{user_id}/tasks', 'TaskController@index')->name('tasks.index');
+Route::get('/{user_id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
+Route::post('/{user_id}/tasks/create', 'TaskController@create');
