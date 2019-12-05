@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/{user_id}/tasks', 'TaskController@index')->name('tasks.index');
