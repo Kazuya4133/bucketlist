@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{user_id}/tasks', 'TaskController@index')->name('tasks.index');
-Route::get('/{user_id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
-Route::post('/{user_id}/tasks/create', 'TaskController@create');
+// {user_id}では動かなかったのはなぜか？
+Route::get('/user/{id}/tasks', 'TaskController@index')->name('tasks.index');
+Route::get('/user/{id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
+Route::post('/user/{id}/tasks/create', 'TaskController@create');

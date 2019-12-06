@@ -50,4 +50,4 @@
     minDate: new Date()
   });
 </script>
-@endscript
+@endsection

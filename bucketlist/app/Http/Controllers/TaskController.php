@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(int $id)
     {
         // すべてのタスクを取得
         $tasks = Task::all();
@@ -24,4 +24,9 @@ class TaskController extends Controller
             'user_id' => $id
         ]);
     }
+
+    public function create(int $id, CreateTask $request)
+    {
+        
+    } 
 }
