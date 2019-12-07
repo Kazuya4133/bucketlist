@@ -1,4 +1,4 @@
-<?php
+<<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('title', 100);
             $table->date('due_date');
             $table->integer('status')->default(1);
-            $table->date('achieved_at');
+            $table->date('achieved_date');
             $table->timestamps();
 
             // 外部キーを設定

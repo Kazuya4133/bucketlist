@@ -15,7 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// {user_id}では動かなかったのはなぜか？
-Route::get('/user/{id}/tasks', 'TaskController@index')->name('tasks.index');
-Route::get('/user/{id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
-Route::post('/user/{id}/tasks/create', 'TaskController@create');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/user/{user_id}/tasks', 'TaskController@index')->name('tasks.index');
+    Route::get('/user/{user_id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
+    Route::post('/user/{user_id}/tasks/create', 'TaskController@create');
+    Route::get('/user/{user_id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
+    Route::post('/user/{user_id}/tasks/{task_id}/edit', 'TaskController@edit');
+});
+
+Auth::routes();

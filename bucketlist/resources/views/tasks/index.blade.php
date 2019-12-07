@@ -14,7 +14,7 @@
         <div class="panel-heading">あなたのBucket List</div>
         <div class="panel-body">
           <div class="text-right">
-            <a href="#" class="btn btn-default btn-block">Bucket Listを追加する
+            <a href="{{ route('tasks.create', ['user_id' => $user_id ?? '']) }}" class="btn btn-default btn-block">Bucket Listを追加する
             </a>
           </div>
         </div>
@@ -24,6 +24,7 @@
           <th>タイトル</th>
           <th>状態</th>
           <th>期限</th>
+          <th>達成日</th>
           <th></th>
         </tr>
         </thead>
@@ -35,7 +36,8 @@
                 <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
               </td>
               <td>{{ $task->formatted_due_date }}</td>
-              <td><a href="#">編集</a></td>
+              <td>{{ $task->formatted_achieved_date }}</td>
+              <td><a href="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">編集</a></td>
             </tr>
           @endforeach
         </tbody>

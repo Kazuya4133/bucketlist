@@ -21,7 +21,7 @@ class TasksTableSeeder extends Seeder
                 'due_date' => Carbon::now()->addDay($num),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'achieved_at' => Carbon::now(),
+                'achieved_date' => Carbon::now(),
             ]);
         }
     }
