@@ -7,16 +7,18 @@ use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateTask;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\EditTask;
 
 class TaskController extends Controller
 {
     public function index(int $user_id)
     {
         // すべてのタスクを取得
-        $user_id = Auth::user()->tasks()->get();
+        $tasks = Auth::user()->tasks()->get();
 
         return view('tasks.index', [
             'tasks' => $tasks,
+            'user_id' => $user_id,
         ]);
     }
 
@@ -29,16 +31,16 @@ class TaskController extends Controller
 
     public function create(int $user_id, CreateTask $request)
     {
-        $user_id = Task::findOrFail($user_id);
+        $user = Task::findOrFail($user_id);
 
         $task = new Task();
         $task->title = $request->title;
         $task->due_date = $request->due_date;
 
-        $user_id->tasks()->save($task);
+        $user->tasks()->save($task);
 
         return redirect()->route('tasks.index', [
-            'id' => $user_id->id,
+            'id' => $user->id,
         ]);
     }
 

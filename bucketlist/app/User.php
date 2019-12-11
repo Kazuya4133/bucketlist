@@ -5,18 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Model;
+use App\Task;
 
 // 自分で追加した分
 use Illuminate\Database\Eloquent\Mode;
-
-// 自分で追加した分
-class User extends Model
-{
-    public function tasks()
-    {
-        return $this->hasMany('App\Task');
-    }
-}
 
 class User extends Authenticatable
 {
@@ -48,5 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Task');
+    }
 
 }

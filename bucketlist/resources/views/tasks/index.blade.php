@@ -23,8 +23,7 @@
         <tr>
           <th>タイトル</th>
           <th>状態</th>
-          <th>期限</th>
-          <th>達成日</th>
+          <th>達成日付</th>
           <th></th>
         </tr>
         </thead>
@@ -35,7 +34,6 @@
               <td>
                 <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
               </td>
-              <td>{{ $task->formatted_due_date }}</td>
               <td>{{ $task->formatted_achieved_date }}</td>
               <td><a href="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">編集</a></td>
             </tr>

@@ -18,15 +18,11 @@
                 @endforeach
               </div>
             @endif
-            <form action="{{ route('tasks.create', ['user_id' => $user_id]) }}" method="POST">
+            <form action="{{ route('tasks.create', ['user_id' => $user_id ?? '']) }}" method="POST">
               @csrf
               <div class="form-group">
                 <label for="title">タイトル</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" />
-              </div>
-              <div class="form-group">
-                <label for="due_date">期限</label>
-                <input type="text" class="form-control" name="due_date" id="due_date" value="{{ old('due_date') }}" />
               </div>
               <div class="text-right">
                 <button type="submit" class="btn btn-primary">送信</button>
@@ -37,8 +33,4 @@
       </div>
     </div>
   </div>
-@endsection
-
-@section('scripts')
-  @include('share.flatpickr.scripts')
 @endsection

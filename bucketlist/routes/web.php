@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/user/{user_id}/tasks', 'TaskController@index')->name('tasks.index');
