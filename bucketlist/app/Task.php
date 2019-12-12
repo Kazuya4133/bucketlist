@@ -39,15 +39,9 @@ class Task extends Model
         return self::STATUS[$status]['class'];
     }
 
-    public function getFormattedDueDateAttribute()
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['due_date'])
-            ->format('Y/m/d');
-    }
-
-    public function getFormattedAchievedDateAttribute()
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['achieved_date'])
-            ->format('Y/m/d');
-    }
+    // public function getFormattedAchievedDateAttribute()
+    // {
+    //     return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['achieved_date'])
+    //         ->format('Y/m/d');
+    // }
 }

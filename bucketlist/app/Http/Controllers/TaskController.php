@@ -31,16 +31,15 @@ class TaskController extends Controller
 
     public function create(int $user_id, CreateTask $request)
     {
-        $user = Task::findOrFail($user_id);
+        $user = User::find($user_id);
 
         $task = new Task();
         $task->title = $request->title;
-        $task->due_date = $request->due_date;
 
         $user->tasks()->save($task);
 
         return redirect()->route('tasks.index', [
-            'id' => $user->id,
+            'user_id' => $user->id,
         ]);
     }
 
@@ -59,7 +58,6 @@ class TaskController extends Controller
 
         $task->title = $request->title;
         $task->status = $request->status;
-        $task->due_date = $request->due_date;
         $task->save();
 
         return redirect()->route('tasks.index', [
