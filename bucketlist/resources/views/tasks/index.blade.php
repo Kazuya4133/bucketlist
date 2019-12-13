@@ -6,7 +6,13 @@
     <div class="box1 col col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">プロフィール</div>
-        <div class="panel-body"></div>
+        <div class="panel-body">
+          <div class="text-center">
+
+            <p>{{ Auth::user()->name }}</p>
+            <a href="#">編集する</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="box2 col col-md-8">

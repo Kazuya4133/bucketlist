@@ -19,6 +19,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/user/{user_id}/tasks/create', 'TaskController@create');
     Route::get('/user/{user_id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
     Route::post('/user/{user_id}/tasks/{task_id}/edit', 'TaskController@edit');
+    Route::get('/user/{user_id}/edit', 'UserController@showProfEditForm')->name('users.profEdit');
+    Route::post('/user/{user_id}/edit', 'UserController@edit');
 
 });
 
