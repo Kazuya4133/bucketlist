@@ -14,14 +14,19 @@
               @endforeach
             </div>
           @endif
-          <form action="#" method="post" enctype="multipart/form-data">
-          @csrf
-          <div class="form-group">
-          <input type="file" name="profile_image"></div>
-          <div class="text-center">
-            <p>{{ Auth::user()->name }}</p>
-            <a href="#">編集する</a>
-            </form>
+          <form action="{{ route('users.edit', ['user_id] => $user_id) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+              <input type="file" name="image">
+              <input type="text" class="form-control" name="name" id="name"
+                       value="{{ old('name', $user->name) }}" />
+            </div>
+            <div class="text-center">
+              <p>{{ Auth::user()->name }}</p>
+              <p>{{ Auth::user()->comment }}</p>
+              <a href="/user/{user_id}/tasks">編集する</a>
+            </div>
+          </form>
           </div>
         </div>
       </div>

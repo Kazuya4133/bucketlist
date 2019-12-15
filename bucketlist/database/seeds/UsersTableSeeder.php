@@ -23,6 +23,7 @@ class UsersTableSeeder extends Seeder
         //         'password' => 123456,
         //         'created_at' => Carbon::now(),
         //         'updated_at' => Carbon::now(),
+        //         'comment' => "こんにちは、" . $num . "です。."
         //     ]);
             
         // }

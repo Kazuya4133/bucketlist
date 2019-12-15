@@ -30,7 +30,8 @@
           <th>タイトル</th>
           <th>状態</th>
           <th>達成日付</th>
-          <th></th>
+          <th>編集</th>
+          <th>削除</th>
         </tr>
         </thead>
         <tbody>
@@ -42,6 +43,11 @@
               </td>
               <td>{{ $task->formatted_achieved_date }}</td>
               <td><a href="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">編集</a></td>
+              <td>
+              <form action="/user/{user_id}/tasks/{task_id}/delete" method="post">
+              @csrf
+              <button type="submit" class="btn btn-danger">削除</button>
+              </form></td>
             </tr>
           @endforeach
         </tbody>
