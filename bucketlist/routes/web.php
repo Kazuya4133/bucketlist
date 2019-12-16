@@ -22,7 +22,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/user/{user_id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
     Route::post('/user/{user_id}/tasks/{task_id}/edit', 'TaskController@edit');
     
-    Route::delete('/user/{user_id}/tasks/{task_id}/delete', 'TaskController@delete');
+    Route::get('/user/{user_id}/tasks/{task_id}/delete', 'TaskController@showDeleteForm')->name('tasks.delete');
+    Route::post('/user/{user_id}/tasks/{task_id}/delete', 'TaskController@remove');
     
     Route::get('/user/{user_id}/edit', 'UserController@showProfEditForm')->name('users.profEdit');
     Route::post('/user/{user_id}/edit', 'UserController@edit');

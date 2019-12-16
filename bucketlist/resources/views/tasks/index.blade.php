@@ -42,12 +42,12 @@
                 <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
               </td>
               <td>{{ $task->formatted_achieved_date }}</td>
-              <td><a href="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">編集</a></td>
               <td>
-              <form action="/user/{user_id}/tasks/{task_id}/delete" method="post">
-              @csrf
-              <button type="submit" class="btn btn-danger">削除</button>
-              </form></td>
+                <a href="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">編集</a>
+              </td>
+              <td>
+                <a href="{{ route('tasks.delete', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">削除</a>
+              </td>
             </tr>
           @endforeach
         </tbody>

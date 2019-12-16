@@ -44,4 +44,9 @@ class Task extends Model
     //     return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['achieved_date'])
     //         ->format('Y/m/d');
     // }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

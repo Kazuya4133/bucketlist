@@ -46,7 +46,6 @@ class TaskController extends Controller
     public function showEditForm(int $user_id, int $task_id)
     {
         $task = Task::find($task_id);
-
         return view('tasks.edit', [
             'task' => $task,
         ]);
@@ -65,10 +64,18 @@ class TaskController extends Controller
         ]);
     }
 
-    public function delete(int $user_id, int $task_id, Request $request)
+    public function showDeleteForm(int $user_id, int $task_id)
+    {
+        $task = Task::find($task_id);
+        return view('tasks.delete', [
+            'task' => $task,
+        ]);
+    }
+
+    public function remove(int $user_id, int $task_id, Request $request)
     {
         Task::find($task_id)->delete();
-        return redirect('tasks.index');
+        return redirect()->route('tasks.index');
     }
     
 }

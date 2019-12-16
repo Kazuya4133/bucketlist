@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col col-md-offset-3 col-md-6">
         <nav class="panel panel-default">
-          <div class="panel-heading">Bucket Listを編集する</div>
+          <div class="panel-heading">Bucket Listを削除する</div>
           <div class="panel-body">
             @if($errors->any())
               <div class="alert alert-danger">
@@ -15,7 +15,7 @@
               </div>
             @endif
             <form
-                action="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}"
+                action="{{ route('tasks.delete', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}"
                 method="POST"
             >
               @csrf
@@ -36,7 +36,6 @@
                     </option>
                   @endforeach
                 </select>
-                
               </div>
               <div class="text-right">
                 <button type="submit" class="btn btn-primary">送信</button>
