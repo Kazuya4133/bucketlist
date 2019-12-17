@@ -75,7 +75,9 @@ class TaskController extends Controller
     public function remove(int $user_id, int $task_id, Request $request)
     {
         Task::find($task_id)->delete();
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index', [
+            'user_id' => $user_id,
+        ]);
     }
     
 }

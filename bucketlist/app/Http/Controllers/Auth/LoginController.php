@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/user/{user_id}/tasks/';
 
     /**
      * Create a new controller instance.
