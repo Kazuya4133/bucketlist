@@ -16,16 +16,16 @@ class UsersTableSeeder extends Seeder
 
         factory(App\User::class, 20)->create();
 
-        // foreach (range(1, 3) as $num) {
-        //     DB::table('users')->insert([
-        //         'name' => "test {$num}",
-        //         'email' => "$num@gmail.com",
-        //         'password' => 123456,
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now(),
-        //         'comment' => "こんにちは、" . $num . "です。."
-        //     ]);
+        foreach (range(1, 3) as $num) {
+            DB::table('users')->insert([
+                'name' => "test {$num}",
+                'email' => "$num@gmail.com",
+                'password' => 123456,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'comment' => "こんにちは、" . $num . "です。."
+            ]);
             
-        // }
+        }
     }
 }

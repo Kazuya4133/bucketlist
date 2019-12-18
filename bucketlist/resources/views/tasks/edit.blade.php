@@ -38,7 +38,7 @@
                 </select>
                 
               </div>
-              <div class="text-right">
+              <div class="text-center">
                 <button type="submit" class="btn btn-primary">送信</button>
               </div>
             </form>

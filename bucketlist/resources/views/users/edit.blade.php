@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col col-md-offset-3 col-md-6">
       <div class="panel panel-default">
@@ -14,17 +14,24 @@
               @endforeach
             </div>
           @endif
-          <form action="{{ route('users.edit', ['user_id] => $user_id) }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('users.edit', ['user_id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <input type="file" name="image">
-              <input type="text" class="form-control" name="name" id="name"
-                       value="{{ old('name', $user->name) }}" />
-            </div>
-            <div class="text-center">
-              <p>{{ Auth::user()->name }}</p>
-              <p>{{ Auth::user()->comment }}</p>
-              <a href="/user/{user_id}/tasks">編集する</a>
+              <div class="text-left">
+                <label for="image">アイコン</label>
+                <input type="file" name="image">
+                <label for="name">名前</label>
+                <input type="text" class="form-control" name="name" id="name"
+                       value="{{ old('name') ?? $user->name }}" />
+                <label for="comment">一言コメント</label><br>
+                <textarea type="text" name="comment" id="comment" value="{{ old('comment') ?? $user->comment ?? '' }}"></textarea>
+              
+                <!-- <p>{{ Auth::user()->name }}</p>
+                <p>{{ Auth::user()->comment }}</p> -->
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">編集する</button>
+                </div>
+              </div>
             </div>
           </form>
           </div>

@@ -12,9 +12,8 @@ class UserController extends Controller
     public function showProfEditForm(int $user_id)
     {
         $user = User::find($user_id);
-
         return view('users.edit', [
-            'user_id' => $user_id,
+            'user' => $user,
         ]);
     }
 
@@ -23,6 +22,7 @@ class UserController extends Controller
         $user = User::find($user_id);
 
         $user->name = $request->name;
+        $user->comment = $request->comment;
         $user->image = $request->image;
         $user->save();
 

@@ -8,9 +8,10 @@
         <div class="panel-heading">プロフィール</div>
         <div class="panel-body">
           <div class="text-center">
-
+            <p>{{ Auth::user()->image }}</p>
             <p>{{ Auth::user()->name }}</p>
-            <a href="#">編集する</a>
+            <p>{{ Auth::user()->comment }}</p>
+            <a href="{{ route('users.edit', ['user_id' => $user_id]) }}">編集する</a>
           </div>
         </div>
       </div>
