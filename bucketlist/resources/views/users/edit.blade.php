@@ -20,11 +20,15 @@
               <div class="text-left">
                 <label for="image">アイコン</label>
                 <input type="file" name="image">
+              </div>
+              <div class="form-group">
                 <label for="name">名前</label>
-                <input type="text" class="form-control" name="name" id="name"
-                       value="{{ old('name') ?? $user->name }}" />
+                <input type="text" class="form-control" name="name" id="name" value="{{ old('name') ?? $user->name }}" />
+              </div>
+              <div class="form-group">
                 <label for="comment">一言コメント</label><br>
-                <textarea type="text" name="comment" id="comment" value="{{ old('comment') ?? $user->comment ?? '' }}"></textarea>
+                <input type="text" class="form-control" name="comment" id="comment" value="{{ old('comment') ?? $user->comment ?? '' }}">
+              </div>
               
                 <!-- <p>{{ Auth::user()->name }}</p>
                 <p>{{ Auth::user()->comment }}</p> -->
