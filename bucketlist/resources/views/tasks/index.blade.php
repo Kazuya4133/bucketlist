@@ -8,7 +8,15 @@
         <div class="panel-heading">プロフィール</div>
         <div class="panel-body">
           <div class="text-center">
-            <p>{{ Auth::user()->image }}</p>
+            <!-- <p>{{ Auth::user()->image }}</p> -->
+
+            @if ($is_image ?? '')
+              <figure>
+                <img src="/storage/app/public/images/{{ Auth::id() }}.jpg" width="100px" height="100px">
+                <figcaption>現在のプロフィール画像</figcaption>
+              </figure>
+            @endif
+
             <p>{{ Auth::user()->name }}</p>
             <p>{{ Auth::user()->comment }}</p>
             <a href="{{ route('users.edit', ['user_id' => $user_id]) }}">編集する</a>

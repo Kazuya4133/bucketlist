@@ -35,7 +35,6 @@ class TaskController extends Controller
 
         $task = new Task();
         $task->title = $request->title;
-
         $user->tasks()->save($task);
 
         return redirect()->route('tasks.index', [

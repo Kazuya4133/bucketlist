@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use Storage;
+use App\Http\Requests\UsersRequest;
 
-// 自作
 class UserController extends Controller
 {
     public function showProfEditForm(int $user_id)
     {
         $user = User::find($user_id);
+        
+        $is_image = false;
+        if (Storage::disk('local')->exists('public/images/' . Auth::id() . '.jpg')) {
+            $is_image = true;
+        }
+
         return view('users.edit', [
             'user' => $user,
+            'is_image' => $is_image,
         ]);
     }
 
@@ -23,7 +31,11 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->comment = $request->comment;
-        $user->image = $request->image;
+        
+        if (!empty($request->image)) {
+            $request->image->storeAs('public/images', Auth::id() . '.jpg');
+        }
+
         $user->save();
 
         return redirect()->route('tasks.index', [
