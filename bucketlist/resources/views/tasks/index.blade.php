@@ -8,11 +8,10 @@
         <div class="panel-heading">プロフィール</div>
         <div class="panel-body">
           <div class="text-center">
-            <!-- <p>{{ Auth::user()->image }}</p> -->
 
-            @if ($is_image ?? '')
+            @if ($image ?? '')
               <figure>
-                <img src="/storage/app/public/images/{{ Auth::id() }}.jpg" width="100px" height="100px">
+                <img src="/{{ $image }}" width="150px" height="150px">
                 <figcaption>現在のプロフィール画像</figcaption>
               </figure>
             @endif
