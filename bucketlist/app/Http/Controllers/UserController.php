@@ -15,7 +15,6 @@ class UserController extends Controller
         
         return view('users.edit', [
             'user' => $user,
-            'image' => str_replace('public/', 'storage/', $user->image),
         ]);
     }
 

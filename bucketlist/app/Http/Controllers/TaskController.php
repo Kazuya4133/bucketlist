@@ -19,6 +19,7 @@ class TaskController extends Controller
         return view('tasks.index', [
             'tasks' => $tasks,
             'user_id' => $user_id,
+            'image' => str_replace('public', 'storage', Auth::user()->image),
         ]);
     }
 

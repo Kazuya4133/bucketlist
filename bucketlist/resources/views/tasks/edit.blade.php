@@ -30,13 +30,11 @@
                   @foreach(\App\Task::STATUS as $key => $val)
                     <option
                         value="{{ $key }}"
-                        {{ $key == old('status', $task->status) ? 'selected' : '' }}
-                    >
+                        {{ $key == old('status', $task->status) ? 'selected' : '' }}>
                       {{ $val['label'] }}
                     </option>
                   @endforeach
                 </select>
-                
               </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">送信</button>

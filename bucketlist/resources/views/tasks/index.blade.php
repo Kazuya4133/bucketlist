@@ -9,12 +9,10 @@
         <div class="panel-body">
           <div class="text-center">
 
-            @if ($image ?? '')
               <figure>
-                <img src="/{{ $image }}" width="150px" height="150px">
+                <img src="{{ asset($image ?? '') }}" width="150px" height="150px">
                 <figcaption>現在のプロフィール画像</figcaption>
               </figure>
-            @endif
 
             <p>{{ Auth::user()->name }}</p>
             <p>{{ Auth::user()->comment }}</p>
