@@ -58,6 +58,10 @@ class TaskController extends Controller
 
         $task->title = $request->title;
         $task->status = $request->status;
+        if ($request->achieved_date) {
+            $task->achieved_date = $request->achieved_date;
+        }
+        
         $task->save();
 
         return redirect()->route('tasks.index', [

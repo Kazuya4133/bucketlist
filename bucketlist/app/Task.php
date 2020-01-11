@@ -39,9 +39,10 @@ class Task extends Model
         return self::STATUS[$status]['class'];
     }
 
+    // 削除する？
     // public function getFormattedAchievedDateAttribute()
     // {
-    //     return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['achieved_date'])
+    //     return Carbon::createFromFormat('Y-m-d', $this->attributes['achieved_date'])
     //         ->format('Y/m/d');
     // }
 

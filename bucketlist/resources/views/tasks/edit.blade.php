@@ -36,6 +36,11 @@
                   @endforeach
                 </select>
               </div>
+              <div class="form-group">
+                <label for="achieved_date">達成日付</label>
+                <input type="text" class="form-control" name="achieved_date" id="achieved_date"
+                       value="{{ old('achieved_date') ?? $task->achieved_date }}"/>
+              </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">送信</button>
               </div>
@@ -45,4 +50,22 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+</script>
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ja.js"></script>
+<script>
+  flatpickr(document.getElementById('achieved_date'), {
+    locale: 'ja',
+    dateFormat: "Y/m/d",
+    maxDate: new Date()
+  });
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+
+
 @endsection

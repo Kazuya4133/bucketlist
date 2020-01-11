@@ -39,6 +39,7 @@ class EditTask extends CreateTask
 
         return $messages + [
             'status.in' => ':attribute には ' . $status_labels. ' のいずれかを指定してください。',
+            'achieved_date.before_or_equal' => ':attribute には今日より前の日付を入力してください。'
         ];
     }
 }

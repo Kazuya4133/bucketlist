@@ -47,7 +47,7 @@
               <td>
                 <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
               </td>
-              <td>{{ $task->formatted_achieved_date }}</td>
+              <td>{{ $task->achieved_date }}</td>
               <td>
                 <a href="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">編集</a>
               </td>
@@ -60,8 +60,4 @@
       </table>
     </div>
   </div>
-@endsection
-
-@section('scripts')
-  @include('share.flatpickr.scripts')
 @endsection
