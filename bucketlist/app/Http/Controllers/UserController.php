@@ -24,8 +24,12 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->comment = $request->comment;
-        $user->image = $request->image->storeAs('public/images', Auth::id() . '.jpg');
-
+        
+        // もし画像があれば更新
+        if ($request->image) {
+            $user->image = $request->image->storeAs('public/images', Auth::id() . '.jpg');
+        }
+       
         $user->save();
 
         return redirect()->route('tasks.index', [

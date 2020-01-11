@@ -16,11 +16,12 @@ class TaskController extends Controller
         // すべてのタスクを取得
         $tasks = Auth::user()->tasks()->get();
 
-        return view('tasks.index', [
+        $data = [
             'tasks' => $tasks,
             'user_id' => $user_id,
-            'image' => str_replace('public', 'storage', Auth::user()->image),
-        ]);
+            'image' => str_replace('public', 'storage', Auth::user()->image)];
+
+        return view('tasks.index', $data);
     }
 
     public function showCreateForm(int $user_id)
@@ -32,7 +33,7 @@ class TaskController extends Controller
 
     public function create(int $user_id, CreateTask $request)
     {
-        $user = User::find($user_id);
+        $user = User::findOrFail($user_id);
 
         $task = new Task();
         $task->title = $request->title;
@@ -45,7 +46,7 @@ class TaskController extends Controller
 
     public function showEditForm(int $user_id, int $task_id)
     {
-        $task = Task::find($task_id);
+        $task = Task::findOrFail($task_id);
         return view('tasks.edit', [
             'task' => $task,
         ]);
@@ -53,7 +54,7 @@ class TaskController extends Controller
 
     public function edit(int $user_id, int $task_id, EditTask $request)
     {
-        $task = Task::find($task_id);
+        $task = Task::findOrFail($task_id);
 
         $task->title = $request->title;
         $task->status = $request->status;
@@ -66,7 +67,7 @@ class TaskController extends Controller
 
     public function showDeleteForm(int $user_id, int $task_id)
     {
-        $task = Task::find($task_id);
+        $task = Task::findOrFail($task_id);
         return view('tasks.delete', [
             'task' => $task,
         ]);
@@ -74,7 +75,7 @@ class TaskController extends Controller
 
     public function remove(int $user_id, int $task_id, Request $request)
     {
-        Task::find($task_id)->delete();
+        Task::findOrFail($task_id)->delete();
         return redirect()->route('tasks.index', [
             'user_id' => $user_id,
         ]);
