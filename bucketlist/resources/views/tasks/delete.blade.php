@@ -14,31 +14,25 @@
                 @endforeach
               </div>
             @endif
-            <form
-                action="{{ route('tasks.delete', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}"
-                method="POST"
-            >
+            <form action="{{ route('tasks.delete', ['user' => $user ?? '', 'task' => $task->id]) }}" method="POST">
               @csrf
               <div class="form-group">
                 <label for="title">タイトル</label>
                 <input type="text" class="form-control" name="title" id="title"
-                       value="{{ old('title') ?? $task->title }}" />
+                       value="{{ old('title') ?? $task->title }}" disabled="disabled"/>
               </div>
               <div class="form-group">
                 <label for="status">状態</label>
-                <select name="status" id="status" class="form-control">
+                <select name="status" id="status" class="form-control" disabled="disabled">
                   @foreach(\App\Task::STATUS as $key => $val)
-                    <option
-                        value="{{ $key }}"
-                        {{ $key == old('status', $task->status) ? 'selected' : '' }}
-                    >
+                    <option value="{{ $key }}" {{ $key == old('status', $task->status) ? 'selected' : '' }}>
                       {{ $val['label'] }}
                     </option>
                   @endforeach
                 </select>
               </div>
-              <div class="text-right">
-                <button type="submit" class="btn btn-primary">送信</button>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">削除</button>
               </div>
             </form>
           </div>

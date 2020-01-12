@@ -1,9 +1,5 @@
 @extends('layout')
 
-@section('styles')
-  @include('share.flatpickr.styles')
-@endsection
-
 @section('content')
   <div class="container">
     <div class="row">
@@ -18,14 +14,14 @@
                 @endforeach
               </div>
             @endif
-            <form action="{{ route('tasks.create', ['user_id' => $user_id ?? '']) }}" method="POST">
+            <form action="{{ route('tasks.create', ['user' => $user ?? '']) }}" method="POST">
               @csrf
               <div class="form-group">
                 <label for="title">タイトル</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" />
               </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary">送信</button>
+                <button type="submit" class="btn btn-primary">追加</button>
               </div>
             </form>
           </div>

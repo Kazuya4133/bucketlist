@@ -15,7 +15,7 @@
               </div>
             @endif
             <form
-                action="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}"
+                action="{{ route('tasks.edit', ['user' => $user ?? '', 'task' => $task->id ?? '']) }}"
                 method="POST"
             >
               @csrf
@@ -42,7 +42,7 @@
                        value="{{ old('achieved_date') ?? $task->achieved_date }}"/>
               </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary">送信</button>
+                <button type="submit" class="btn btn-primary">編集</button>
               </div>
             </form>
           </div>

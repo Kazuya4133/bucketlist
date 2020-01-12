@@ -11,50 +11,53 @@ use App\Http\Requests\EditTask;
 
 class TaskController extends Controller
 {
-    public function index(int $user_id)
+    public function index(User $user)
     {
-        // すべてのタスクを取得
         $tasks = Auth::user()->tasks()->get();
 
         $data = [
             'tasks' => $tasks,
-            'user_id' => $user_id,
+            'user' => $user->id,
             'image' => str_replace('public', 'storage', Auth::user()->image)];
 
         return view('tasks.index', $data);
     }
 
-    public function showCreateForm(int $user_id)
+    public function showCreateForm(User $user)
     {
-        return view('tasks/create', [
-            'user_id' => $user_id
+        return view('tasks.create', [
+            'user' => $user->id,
         ]);
     }
 
-    public function create(int $user_id, CreateTask $request)
+    public function create(User $user, CreateTask $request)
     {
-        $user = User::findOrFail($user_id);
+        // 削除する
+        // $user = User::findOrFail($user);
 
         $task = new Task();
         $task->title = $request->title;
         $user->tasks()->save($task);
 
         return redirect()->route('tasks.index', [
-            'user_id' => $user->id,
+            'user' => $user->id,
         ]);
     }
 
-    public function showEditForm(int $user_id, int $task_id)
+    public function showEditForm(User $user, Task $task)
     {
-        $task = Task::findOrFail($task_id);
+        // 削除する
+        // $task = Task::findOrFail($task);
         return view('tasks.edit', [
+            'user' => $user,
             'task' => $task,
         ]);
     }
 
-    public function edit(int $user_id, int $task_id, EditTask $request)
+    public function edit(User $user, Task $task, EditTask $request)
     {
-        $task = Task::findOrFail($task_id);
+        // 削除する
+        // $task = Task::findOrFail($task);
 
         $task->title = $request->title;
         $task->status = $request->status;
@@ -65,23 +68,27 @@ class TaskController extends Controller
         $task->save();
 
         return redirect()->route('tasks.index', [
-            'user_id' => $task->user_id,
+            'user' => $user,
         ]);
     }
 
-    public function showDeleteForm(int $user_id, int $task_id)
+    public function showDeleteForm(User $user, Task $task)
     {
-        $task = Task::findOrFail($task_id);
+        // 削除する
+        // $task = Task::findOrFail($task);
         return view('tasks.delete', [
+            'user' => $user,
             'task' => $task,
         ]);
     }
 
-    public function remove(int $user_id, int $task_id, Request $request)
+    public function remove(User $user, Task $task, Request $request)
     {
-        Task::findOrFail($task_id)->delete();
+        // 削除する
+        // Task::findOrFail($task)->delete();
+        $task->delete();
         return redirect()->route('tasks.index', [
-            'user_id' => $user_id,
+            'user' => $user,
         ]);
     }
     

@@ -14,7 +14,7 @@
               @endforeach
             </div>
           @endif
-          <form action="{{ route('users.edit', ['user_id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('users.edit', ['user' => $user ?? '' ]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
               <div class="text-left">

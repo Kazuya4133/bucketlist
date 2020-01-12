@@ -16,7 +16,7 @@
 
             <p>{{ Auth::user()->name }}</p>
             <p>{{ Auth::user()->comment }}</p>
-            <a href="{{ route('users.edit', ['user_id' => $user_id]) }}">編集する</a>
+            <a href="{{ route('users.edit', ['user' => $user ?? '']) }}">編集する</a>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
         <div class="panel-heading">あなたのBucket List</div>
         <div class="panel-body">
           <div class="text-right">
-            <a href="{{ route('tasks.create', ['user_id' => $user_id ?? '']) }}" class="btn btn-default btn-block">Bucket Listを追加する
+            <a href="{{ route('tasks.create', ['user' => $user ?? '']) }}" class="btn btn-default btn-block">Bucket Listを追加する
             </a>
           </div>
         </div>
@@ -49,10 +49,10 @@
               </td>
               <td>{{ $task->achieved_date }}</td>
               <td>
-                <a href="{{ route('tasks.edit', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">編集</a>
+                <a href="{{ route('tasks.edit', ['user' => $user ?? '', 'task' => $task->id]) }}">編集</a>
               </td>
               <td>
-                <a href="{{ route('tasks.delete', ['user_id' => $task->user_id, 'task_id' => $task->id]) }}">削除</a>
+                <a href="{{ route('tasks.delete', ['user' => $user ?? '', 'task' => $task->id]) }}">削除</a>
               </td>
             </tr>
           @endforeach

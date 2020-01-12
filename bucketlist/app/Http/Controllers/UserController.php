@@ -9,18 +9,18 @@ use App\Http\Requests\UsersRequest;
 
 class UserController extends Controller
 {
-    public function showProfEditForm(int $user_id)
+    public function showProfEditForm(User $user)
     {
-        $user = User::find($user_id);
+        // $user = User::findOrFail($user);
         
         return view('users.edit', [
             'user' => $user,
         ]);
     }
 
-    public function edit(int $user_id, UsersRequest $request)
+    public function edit(User $user, UsersRequest $request)
     {
-        $user = User::find($user_id);
+        // $user = User::findOrFail($user);
 
         $user->name = $request->name;
         $user->comment = $request->comment;
@@ -33,7 +33,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('tasks.index', [
-            'user_id' => $user_id,
+            'user' => $user,
         ]);
     }
 }
