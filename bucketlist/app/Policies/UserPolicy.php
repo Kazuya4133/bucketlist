@@ -5,8 +5,10 @@ namespace App\Policies;
 use App\User;
 use App\Task;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
-class TaskPolicy
+
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -20,8 +22,5 @@ class TaskPolicy
         //
     }
 
-    public function view(User $user, Task $task)
-    {
-        return $user->id === $task->user_id;
-    }
+   
 }

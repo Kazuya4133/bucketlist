@@ -25,6 +25,10 @@ class TaskController extends Controller
 
     public function showCreateForm(User $user)
     {
+        if (Auth::user()->id !== $user->id) {
+            abort(403);
+        }
+
         return view('tasks.create', [
             'user' => $user->id,
         ]);
@@ -48,6 +52,12 @@ class TaskController extends Controller
     {
         // 削除する
         // $task = Task::findOrFail($task);
+
+        if ($user->id != $task->user_id) {
+            // dd($user->id);は24で、
+            // dd($task->user_id);は"24"になっていてエラー
+            abort(403);
+        }
         return view('tasks.edit', [
             'user' => $user,
             'task' => $task,
@@ -64,7 +74,6 @@ class TaskController extends Controller
         if ($request->achieved_date) {
             $task->achieved_date = $request->achieved_date;
         }
-        
         $task->save();
 
         return redirect()->route('tasks.index', [
@@ -76,6 +85,12 @@ class TaskController extends Controller
     {
         // 削除する
         // $task = Task::findOrFail($task);
+
+        if ($user->id != $task->user_id) {
+            // dd($user->id);は24で、
+            // dd($task->user_id);は"24"になっていてエラー
+            abort(403);
+        }
         return view('tasks.delete', [
             'user' => $user,
             'task' => $task,
@@ -90,6 +105,5 @@ class TaskController extends Controller
         return redirect()->route('tasks.index', [
             'user' => $user,
         ]);
-    }
-    
+    }   
 }
